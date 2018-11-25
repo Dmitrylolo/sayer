@@ -33,6 +33,10 @@ const colors = {
   separator: '#e4e4e4',
   noteText: '#2b2f3e',
   roundedComments: '#303165',
+  createCommentBackground: '#e6e6e6',
+  inputCommentBackground: '#FFFFFF',
+  inputCommentBorder: '#dadada',
+  commentSeparator: '#efefef',
 };
 
 export default colors;

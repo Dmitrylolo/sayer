@@ -18,7 +18,7 @@ import {
 
 class MainScreen extends Component {
   static propTypes = {
-    notes: PropTypes.object,
+    notes: PropTypes.array,
   };
 
   static navigationOptions = ({ navigation }) => {
@@ -32,9 +32,15 @@ class MainScreen extends Component {
     };
   };
 
+  state = { notes: this.props.notes };
+
+  componentDidMount() {
+    console.log('notesAAAAAAA ', this.props.notes.length);
+  }
+
   onNewButtonPress = () => this.props.navigation.push('CreateNote');
 
-  onNotePress = id => this.props.navigation.push('NoteDetails', { id });
+  onNotePress = note => this.props.navigation.push('NoteDetails', { note });
 
   onDeleteButtonPress = id =>
     Alert.alert(
@@ -53,27 +59,33 @@ class MainScreen extends Component {
 
   deleteNote = id => alert(`note with id: ${id} have been deleted`);
 
-  keyExtractor = item => `${item.id}`;
+  keyExtractor = note => `${note.id}`;
 
   renderNotes = () => {
+    const { notes } = this.props;
     return (
       <View style={styles.container}>
-        <FlatList
-          data={NOTES_FIXTURES}
-          renderItem={({ item }) => (
-            <NoteListItem
-              onNotePress={() => this.onNotePress(item.id)}
-              id={item.id}
-              noteText={item.text}
-              commentsAmount={
-                COMMENTS_FIXTURES.filter(comment => comment.noteId === item.id)
-                  .length
-              }
-              onDeleteButtonPress={() => this.onDeleteButtonPress(item.id)}
-            />
-          )}
-          keyExtractor={this.keyExtractor}
-        />
+        {notes.length === 0 ? (
+          <Text>No notes yet</Text>
+        ) : (
+          <FlatList
+            data={notes}
+            renderItem={({ item: note }) => (
+              <NoteListItem
+                onNotePress={() => this.onNotePress(note)}
+                id={note.id}
+                noteText={note.text}
+                commentsAmount={
+                  COMMENTS_FIXTURES.filter(
+                    comment => comment.noteId === note.id
+                  ).length
+                }
+                onDeleteButtonPress={() => this.onDeleteButtonPress(note.id)}
+              />
+            )}
+            keyExtractor={this.keyExtractor}
+          />
+        )}
         <NewNoteButton onNewButtonPress={this.onNewButtonPress} />
       </View>
     );
@@ -88,7 +100,13 @@ class MainScreen extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    notes: state.notes.notes,
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   null
 )(MainScreen);

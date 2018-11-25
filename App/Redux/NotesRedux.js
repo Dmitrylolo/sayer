@@ -20,10 +20,13 @@ export const INITIAL_STATE = Immutable({
 
 // request the data from an api
 export const createNote = (state, { note }) => {
-  console.log([...state.notes, note]);
   if (note) {
-    return { notes: [...state.notes, note] };
+    console.log('state', state);
+    return {
+      notes: [...state.notes, { id: state.notes.length, text: note }],
+    };
   }
+
   return state;
 };
 

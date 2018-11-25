@@ -8,8 +8,8 @@ const REDUX_PERSIST = {
   storeConfig: {
     key: 'primary',
     storage: AsyncStorage,
-    blacklist: [],
-    whitelist: ['notes', 'comments'],
+    blacklist: ['notes', 'comments'],
+    whitelist: [],
     transforms: [immutablePersistenceTransform],
   },
 };

@@ -16,10 +16,7 @@ const CreateNoteInputField = props => {
         onChangeText={noteText => props.onChangeNoteText(noteText)}
         underlineColorAndroid="transparent"
       />
-      <RoundButton
-        onButtonPress={props.onCreateButtonPress}
-        buttonContent=">"
-      />
+      <RoundButton onButtonPress={props.onCreateButtonPress} buttonText=">" />
     </View>
   );
 };

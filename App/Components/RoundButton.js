@@ -5,16 +5,16 @@ import PropTypes from 'prop-types';
 import styles from './Styles/RoundButtonStyles';
 
 const RoundButton = props => {
-  const { onButtonPress, buttonContent } = props;
+  const { onButtonPress, buttonText } = props;
   return (
     <TouchableOpacity onPress={onButtonPress} style={[styles.container]}>
-      <Text style={styles.content}>{buttonContent}</Text>
+      <Text style={styles.content}>{buttonText}</Text>
     </TouchableOpacity>
   );
 };
 
 RoundButton.propTypes = {
-  buttonContent: PropTypes.string.isRequired,
+  buttonText: PropTypes.string.isRequired,
   onButtonPress: PropTypes.func.isRequired,
 };
 

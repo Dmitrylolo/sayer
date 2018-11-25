@@ -9,14 +9,15 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 32,
+
     backgroundColor: Colors.newNoteButtonColor,
-    shadowColor: 'rgba(0,0,0,0.3)',
+    shadowColor: 'rgba(0,0,0,0.5)',
     shadowOffset: {
       width: 1,
       height: 1,
     },
     shadowOpacity: 1.0,
-    elevation: 33,
+    elevation: 6,
     alignSelf: 'center',
     padding: 20,
   },

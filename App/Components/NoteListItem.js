@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import Swipeable from 'react-native-swipeable';
@@ -9,7 +9,7 @@ import SwipeableButton from '../Components/SwipeableButton';
 import styles from './Styles/NoteListItemStyles.js';
 import { Colors } from '../Themes';
 
-class NoteListItem extends PureComponent {
+class NoteListItem extends Component {
   render() {
     const {
       onNotePress,

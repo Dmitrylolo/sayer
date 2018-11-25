@@ -3,7 +3,7 @@ import { Metrics, Colors } from '../../Themes/';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
+    width: '70%',
   },
   title: {
     color: Colors.headerTitleColor,
