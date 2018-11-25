@@ -38,7 +38,14 @@ class MainScreen extends Component {
       <FlatList
         data={NOTES_FIXTURES}
         renderItem={({ item }) => (
-          <NoteListItem id={item.id} noteText={item.text} />
+          <NoteListItem
+            id={item.id}
+            noteText={item.text}
+            commentsAmount={
+              COMMENTS_FIXTURES.filter(comment => comment.noteId === item.id)
+                .length
+            }
+          />
         )}
         keyExtractor={this.keyExtractor}
       />
