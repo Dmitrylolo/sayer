@@ -7,6 +7,8 @@ import MainScreenTitle from '../Components/MainScreenTitle';
 import NoteListItem from '../Components/NoteListItem';
 import NewNoteButton from '../Components/NewNoteButton';
 
+import NotesActions from '../Redux/NotesRedux';
+
 import styles from './Styles/MainScreenStyles';
 
 import {
@@ -53,7 +55,7 @@ class MainScreen extends Component {
       { cancelable: false }
     );
 
-  deleteNote = id => alert(`note with id: ${id} have been deleted`);
+  deleteNote = id => this.props.deleteNote(id);
 
   keyExtractor = note => `${note.id}`;
 
@@ -98,7 +100,15 @@ const mapStateToProps = ({ notes }) => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteNote: id => {
+      dispatch(NotesActions.deleteNote(id));
+    },
+  };
+};
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(MainScreen);

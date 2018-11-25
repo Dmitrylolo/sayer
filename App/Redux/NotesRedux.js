@@ -6,6 +6,7 @@ import Immutable from 'seamless-immutable';
 const { Types, Creators } = createActions({
   createNote: ['note'],
   addComment: ['comment', 'noteId'],
+  deleteNote: ['id'],
 });
 
 export const NotesTypes = Types;
@@ -20,7 +21,6 @@ export const INITIAL_STATE = Immutable([]);
 // request the data from an api
 export const createNote = (state, { note }) => {
   if (note) {
-    console.log('state', state);
     return [
       ...state,
       {
@@ -51,9 +51,17 @@ export const addComment = (state, { comment, noteId }) => {
   }
   return state;
 };
+
+export const deleteNote = (state, { id }) => {
+  if (id) {
+    return state.filter(note => note.id !== id);
+  }
+  return state;
+};
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.CREATE_NOTE]: createNote,
   [Types.ADD_COMMENT]: addComment,
+  [Types.DELETE_NOTE]: deleteNote,
 });
