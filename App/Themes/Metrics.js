@@ -18,6 +18,7 @@ const metrics = {
   roundButtonDiameter: 48,
   roundButtonContentSize: 32,
   roundedCommentsDiameter: 40,
+  titleMargin: 30,
   icons: {
     tiny: 15,
     small: 20,

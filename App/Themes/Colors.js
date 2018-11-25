@@ -25,6 +25,7 @@ const colors = {
   deleteButtonColor: '#d81959',
   newNoteButtonColor: '#d81959',
   newNoteButtonText: '#f7a7f1',
+  newNoteInputText: '#333333',
   headerBackgroundColor: '#0d1c3d',
   headerTitleColor: '#FFFFFF',
   roundButtonDefaultColor: '#303165',

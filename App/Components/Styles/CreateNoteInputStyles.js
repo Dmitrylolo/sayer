@@ -1,17 +1,18 @@
 import { StyleSheet } from 'react-native';
-import { Metrics } from '../../Themes/';
+import { Metrics, Colors } from '../../Themes/';
 
 export default StyleSheet.create({
   container: {
     flexGrow: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'flex-start',
-    marginTop: Metrics.baseMargin,
+    marginTop: Metrics.doubleBaseMargin,
   },
   input: {
     borderBottomWidth: 1,
     borderBottomColor: 'black',
-    width: '80%',
+    width: '75%',
+    fontSize: 20,
   },
 });

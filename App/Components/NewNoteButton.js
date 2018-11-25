@@ -6,8 +6,10 @@ import styles from './Styles/NewNoteButtonStyles';
 
 const NewNoteButton = props => {
   return (
-    <TouchableOpacity onPress={props.onNewButtonPress} style={styles.container}>
-      <Text style={styles.text}>+</Text>
+    <TouchableOpacity onPress={props.onNewButtonPress}>
+      <View style={styles.container}>
+        <Text style={styles.text}>+</Text>
+      </View>
     </TouchableOpacity>
   );
 };

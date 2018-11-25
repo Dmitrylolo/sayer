@@ -16,8 +16,9 @@ export default StyleSheet.create({
       height: 1,
     },
     shadowOpacity: 1.0,
-    elevation: 3,
+    elevation: 33,
     alignSelf: 'center',
+    padding: 20,
   },
   text: {
     fontSize: 48,

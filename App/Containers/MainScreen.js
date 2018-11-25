@@ -34,7 +34,7 @@ class MainScreen extends Component {
 
   onNewButtonPress = () => this.props.navigation.push('CreateNote');
 
-  onNotePress = id => this.props.navigation.push('NoteDetails');
+  onNotePress = id => this.props.navigation.push('NoteDetails', { id });
 
   onDeleteButtonPress = id =>
     Alert.alert(

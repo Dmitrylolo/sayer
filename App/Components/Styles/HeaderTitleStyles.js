@@ -7,5 +7,6 @@ export default StyleSheet.create({
   },
   title: {
     color: Colors.headerTitleColor,
+    fontSize: 24,
   },
 });
