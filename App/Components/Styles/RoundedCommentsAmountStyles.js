@@ -1,8 +1,19 @@
 import { StyleSheet } from 'react-native';
-import { Metrics } from '../../Themes/';
+import { Metrics, Colors } from '../../Themes/';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
+    width: Metrics.roundedCommentsDiameter,
+    height: Metrics.roundedCommentsDiameter,
+    borderRadius: Metrics.roundedCommentsDiameter / 2,
+    backgroundColor: Colors.roundedComments,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
+  amount: {
+    textAlign: 'center',
+    fontSize: 24,
+    color: 'white',
   },
 });

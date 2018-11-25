@@ -28,11 +28,21 @@ class NoteListItem extends PureComponent {
             onButtonPress={() => onDeleteButtonPress(id)}
           />,
         ]}
+        rightButtonWidth={120}
       >
-        <TouchableOpacity onPress={() => onNotePress(id)}>
-          <View style={styles.container}>
-            <View>
-              <Text>{noteText}</Text>
+        <TouchableOpacity
+          onPress={() => onNotePress(id)}
+          style={styles.container}
+        >
+          <View style={styles.listItemContainer}>
+            <View style={styles.noteTextContainer}>
+              <Text
+                style={styles.noteText}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+              >
+                {noteText}
+              </Text>
             </View>
             <View style={styles.commentsAmountContainer}>
               <RoundedCommentsAmount amount={commentsAmount} />

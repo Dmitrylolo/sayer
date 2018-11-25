@@ -57,7 +57,7 @@ class MainScreen extends Component {
 
   renderNotes = () => {
     return (
-      <Fragment>
+      <View style={styles.container}>
         <FlatList
           data={NOTES_FIXTURES}
           renderItem={({ item }) => (
@@ -75,7 +75,7 @@ class MainScreen extends Component {
           keyExtractor={this.keyExtractor}
         />
         <NewNoteButton onNewButtonPress={this.onNewButtonPress} />
-      </Fragment>
+      </View>
     );
   };
 

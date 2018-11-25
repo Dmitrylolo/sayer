@@ -14,8 +14,7 @@ const SwipeableButton = props => (
       },
     ]}
   >
-    {console.log('color', props.buttonBackGroundColor)}
-    <Text>{props.buttonText}</Text>
+    <Text style={styles.buttonText}>{props.buttonText}</Text>
   </TouchableOpacity>
 );
 

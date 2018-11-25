@@ -3,6 +3,7 @@ import { Metrics, Colors } from '../../Themes/';
 
 export default StyleSheet.create({
   container: {
+    marginTop: Metrics.doubleBaseMargin,
     height: 64,
     width: 64,
     alignItems: 'center',
@@ -16,6 +17,12 @@ export default StyleSheet.create({
     },
     shadowOpacity: 1.0,
     elevation: 3,
+    alignSelf: 'center',
   },
-  text: { height: 32, width: 32, fontSize: 25 },
+  text: {
+    fontSize: 48,
+    color: Colors.newNoteButtonText,
+    lineHeight: 56,
+    fontWeight: 'bold',
+  },
 });

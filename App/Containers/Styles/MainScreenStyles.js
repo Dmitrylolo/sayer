@@ -3,7 +3,7 @@ import { Metrics } from '../../Themes/';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
-    margin: Metrics.baseMargin,
+    flexGrow: 1,
+    backgroundColor: 'white',
   },
 });

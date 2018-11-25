@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
 import { Field, reset, reduxForm } from 'redux-form';
 
+import HeaderTitle from '../Components/HeaderTitle';
+import CreateNoteInput from '../Components/CreateNoteInput';
+
 import { createNote } from '../Redux/NotesRedux';
 
 class CreateNoteScreen extends Component {
@@ -13,10 +16,27 @@ class CreateNoteScreen extends Component {
     createNoteValues: PropTypes.object,
   };
 
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: <HeaderTitle title="Creatae New Item" />,
+    };
+  };
+
+  state = {
+    noteText: '',
+  };
+
+  onChangeNoteText = noteText => this.setState({ noteText });
+  onCreateButtonPress = () => {};
+
   render() {
     return (
       <View>
-        <Text>CreateNoteScreen</Text>
+        <CreateNoteInput
+          noteText={this.state.noteText}
+          onChangeNoteText={this.onChangeNoteText}
+          onCreateButtonPress={this.onCreateButtonPress}
+        />
       </View>
     );
   }

@@ -4,6 +4,11 @@ import { Metrics } from '../../Themes/';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'red',
+    justifyContent: 'center',
+    paddingLeft: 28,
+  },
+  buttonText: {
+    fontSize: 24,
+    color: 'white',
   },
 });

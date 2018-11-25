@@ -13,8 +13,11 @@ const metrics = {
   horizontalLineHeight: 1,
   screenWidth: width < height ? width : height,
   screenHeight: width < height ? height : width,
-  navBarHeight: Platform.OS === 'ios' ? 64 : 54,
+  headerHeight: Platform.OS === 'ios' ? 120 : 110,
   buttonRadius: 4,
+  roundButtonDiameter: 48,
+  roundButtonContentSize: 32,
+  roundedCommentsDiameter: 40,
   icons: {
     tiny: 15,
     small: 20,

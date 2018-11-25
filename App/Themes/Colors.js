@@ -24,6 +24,14 @@ const colors = {
   text: '#E0D7E5',
   deleteButtonColor: '#d81959',
   newNoteButtonColor: '#d81959',
+  newNoteButtonText: '#f7a7f1',
+  headerBackgroundColor: '#0d1c3d',
+  headerTitleColor: '#FFFFFF',
+  roundButtonDefaultColor: '#303165',
+  roundButtonContentColor: '#FFFFFF',
+  separator: '#e4e4e4',
+  noteText: '#2b2f3e',
+  roundedComments: '#303165',
 };
 
 export default colors;
