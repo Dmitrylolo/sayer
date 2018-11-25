@@ -62,7 +62,7 @@ class MainScreen extends Component {
   keyExtractor = note => `${note.id}`;
 
   renderNotes = () => {
-    const { notes } = this.props;
+    const { notes, comments } = this.props;
     return (
       <View style={styles.container}>
         {notes.length === 0 ? (
@@ -76,9 +76,7 @@ class MainScreen extends Component {
                 id={note.id}
                 noteText={note.text}
                 commentsAmount={
-                  COMMENTS_FIXTURES.filter(
-                    comment => comment.noteId === note.id
-                  ).length
+                  comments.filter(comment => comment.noteId === note.id).length
                 }
                 onDeleteButtonPress={() => this.onDeleteButtonPress(note.id)}
               />
@@ -103,6 +101,7 @@ class MainScreen extends Component {
 const mapStateToProps = state => {
   return {
     notes: state.notes.notes,
+    comments: state.comments.comments,
   };
 };
 

@@ -23,7 +23,13 @@ export const createNote = (state, { note }) => {
   if (note) {
     console.log('state', state);
     return {
-      notes: [...state.notes, { id: state.notes.length, text: note }],
+      notes: [
+        ...state.notes,
+        {
+          id: state.notes.length + 1,
+          text: note,
+        },
+      ],
     };
   }
 

@@ -7,7 +7,11 @@ import RoundButton from './RoundButton';
 import styles from './Styles/CreateCommentInputStyles';
 
 const CreateCommentInput = props => {
-  const { onCreateCommentButtonPress, commentText } = props;
+  const {
+    onCreateCommentButtonPress,
+    commentText,
+    onCommentTextChange,
+  } = props;
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
@@ -15,6 +19,7 @@ const CreateCommentInput = props => {
           placeholder="Type new comment here.."
           value={commentText}
           style={styles.input}
+          onChangeText={commentText => props.onCommentTextChange(commentText)}
         />
       </View>
       <View style={styles.buttonContainer}>
@@ -30,6 +35,7 @@ const CreateCommentInput = props => {
 CreateCommentInput.propTypes = {
   commentText: PropTypes.string.isRequired,
   onCreateCommentButtonPress: PropTypes.func.isRequired,
+  onCommentTextChange: PropTypes.func.isRequired,
 };
 
 export default CreateCommentInput;

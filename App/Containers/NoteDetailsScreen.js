@@ -9,9 +9,9 @@ import CommentListItem from '../Components/CommentListItem';
 import CreateCommentInput from '../Components/CreateCommentInput';
 import RoundButton from '../Components/RoundButton';
 
-import styles from './Styles/NotesDetailsScreenStyles';
+import CommentsActions from '../Redux/CommentsRedux';
 
-import { COMMENTS_FIXTURES } from '../Fixtures';
+import styles from './Styles/NotesDetailsScreenStyles';
 
 class NoteDetailsScreen extends Component {
   static propTypes = {
@@ -31,10 +31,23 @@ class NoteDetailsScreen extends Component {
 
   state = { commentText: '' };
 
-  onCommentTextChange = commentText => this.setState({ commentText });
+  onCommentTextChange = commentText => {
+    console.log(commentText);
+    this.setState({ commentText });
+  };
 
   onCreateCommentButtonPress = () => {
-    alert('comment created');
+    const { commentText } = this.state;
+    const {
+      navigation: {
+        state: {
+          params: {
+            note: { id: noteId },
+          },
+        },
+      },
+    } = this.props;
+    this.props.addComment(commentText, noteId);
   };
 
   keyExtractor = comment => `${comment.id}`;
@@ -46,7 +59,7 @@ class NoteDetailsScreen extends Component {
       <View style={styles.container}>
         <View style={styles.commentsContainer}>
           <FlatList
-            data={COMMENTS_FIXTURES.filter(
+            data={this.props.comments.filter(
               comment =>
                 comment.noteId === this.props.navigation.state.params.note.id
             )}
@@ -69,7 +82,22 @@ class NoteDetailsScreen extends Component {
   }
 }
 
+const mapStateToProps = ({ comments, notes }) => {
+  return {
+    comments: comments.comments,
+    notes,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addComment: (comment, noteId) => {
+      dispatch(CommentsActions.addComment(comment, noteId));
+    },
+  };
+};
+
 export default connect(
-  null,
-  null
+  mapStateToProps,
+  mapDispatchToProps
 )(NoteDetailsScreen);
