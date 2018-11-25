@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View, Text, FlatList, Alert } from 'react-native';
 
 import MainScreenTitle from '../Components/MainScreenTitle';
 import NoteListItem from '../Components/NoteListItem';
+import NewNoteButton from '../Components/NewNoteButton';
 
 import styles from './Styles/MainScreenStyles';
 
@@ -31,6 +32,8 @@ class MainScreen extends Component {
     };
   };
 
+  onNewButtonPress = () => this.props.navigation.push('CreateNote');
+
   onNotePress = id => this.props.navigation.push('NoteDetails');
 
   onDeleteButtonPress = id =>
@@ -54,22 +57,25 @@ class MainScreen extends Component {
 
   renderNotes = () => {
     return (
-      <FlatList
-        data={NOTES_FIXTURES}
-        renderItem={({ item }) => (
-          <NoteListItem
-            onNotePress={() => this.onNotePress(item.id)}
-            id={item.id}
-            noteText={item.text}
-            commentsAmount={
-              COMMENTS_FIXTURES.filter(comment => comment.noteId === item.id)
-                .length
-            }
-            onDeleteButtonPress={() => this.onDeleteButtonPress(item.id)}
-          />
-        )}
-        keyExtractor={this.keyExtractor}
-      />
+      <Fragment>
+        <FlatList
+          data={NOTES_FIXTURES}
+          renderItem={({ item }) => (
+            <NoteListItem
+              onNotePress={() => this.onNotePress(item.id)}
+              id={item.id}
+              noteText={item.text}
+              commentsAmount={
+                COMMENTS_FIXTURES.filter(comment => comment.noteId === item.id)
+                  .length
+              }
+              onDeleteButtonPress={() => this.onDeleteButtonPress(item.id)}
+            />
+          )}
+          keyExtractor={this.keyExtractor}
+        />
+        <NewNoteButton onNewButtonPress={this.onNewButtonPress} />
+      </Fragment>
     );
   };
 

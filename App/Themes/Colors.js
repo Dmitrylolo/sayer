@@ -22,7 +22,8 @@ const colors = {
   border: '#483F53',
   banner: '#5F3E63',
   text: '#E0D7E5',
-  deleteButtonColor: 'red',
+  deleteButtonColor: '#d81959',
+  newNoteButtonColor: '#d81959',
 };
 
 export default colors;
