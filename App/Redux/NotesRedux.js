@@ -5,6 +5,7 @@ import Immutable from 'seamless-immutable';
 
 const { Types, Creators } = createActions({
   createNote: ['note'],
+  addComment: ['comment', 'noteId'],
 });
 
 export const NotesTypes = Types;
@@ -12,9 +13,7 @@ export default Creators;
 
 /* ------------- Initial State ------------- */
 
-export const INITIAL_STATE = Immutable({
-  notes: [],
-});
+export const INITIAL_STATE = Immutable([]);
 
 /* ------------- Reducers ------------- */
 
@@ -22,22 +21,39 @@ export const INITIAL_STATE = Immutable({
 export const createNote = (state, { note }) => {
   if (note) {
     console.log('state', state);
-    return {
-      notes: [
-        ...state.notes,
-        {
-          id: state.notes.length + 1,
-          text: note,
-        },
-      ],
-    };
+    return [
+      ...state,
+      {
+        id: state.length + 1,
+        text: note,
+        comments: [],
+      },
+    ];
   }
-
   return state;
 };
 
+export const addComment = (state, { comment, noteId }) => {
+  if (comment) {
+    return [
+      ...state.map(note =>
+        note.id === noteId
+          ? {
+              ...note,
+              comments: [
+                ...note.comments,
+                { noteId, id: note.comments.length + 1, commentText: comment },
+              ],
+            }
+          : note
+      ),
+    ];
+  }
+  return state;
+};
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.CREATE_NOTE]: createNote,
+  [Types.ADD_COMMENT]: addComment,
 });

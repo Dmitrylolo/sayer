@@ -34,10 +34,6 @@ class MainScreen extends Component {
 
   state = { notes: this.props.notes };
 
-  componentDidMount() {
-    console.log('notesAAAAAAA ', this.props.notes.length);
-  }
-
   onNewButtonPress = () => this.props.navigation.push('CreateNote');
 
   onNotePress = note => this.props.navigation.push('NoteDetails', { note });
@@ -62,7 +58,7 @@ class MainScreen extends Component {
   keyExtractor = note => `${note.id}`;
 
   renderNotes = () => {
-    const { notes, comments } = this.props;
+    const { notes } = this.props;
     return (
       <View style={styles.container}>
         {notes.length === 0 ? (
@@ -75,9 +71,7 @@ class MainScreen extends Component {
                 onNotePress={() => this.onNotePress(note)}
                 id={note.id}
                 noteText={note.text}
-                commentsAmount={
-                  comments.filter(comment => comment.noteId === note.id).length
-                }
+                commentsAmount={note.comments.length}
                 onDeleteButtonPress={() => this.onDeleteButtonPress(note.id)}
               />
             )}
@@ -98,10 +92,9 @@ class MainScreen extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ notes }) => {
   return {
-    notes: state.notes.notes,
-    comments: state.comments.comments,
+    notes,
   };
 };
 

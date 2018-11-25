@@ -9,7 +9,7 @@ import CommentListItem from '../Components/CommentListItem';
 import CreateCommentInput from '../Components/CreateCommentInput';
 import RoundButton from '../Components/RoundButton';
 
-import CommentsActions from '../Redux/CommentsRedux';
+import NotesActions from '../Redux/NotesRedux';
 
 import styles from './Styles/NotesDetailsScreenStyles';
 
@@ -32,7 +32,6 @@ class NoteDetailsScreen extends Component {
   state = { commentText: '' };
 
   onCommentTextChange = commentText => {
-    console.log(commentText);
     this.setState({ commentText });
   };
 
@@ -46,8 +45,18 @@ class NoteDetailsScreen extends Component {
           },
         },
       },
+      navigation: { navigate },
+      addComment,
     } = this.props;
-    this.props.addComment(commentText, noteId);
+    navigate('Main');
+    addComment(commentText, noteId);
+  };
+
+  dataToRender = () => {
+    const note = this.props.notes.filter(
+      note => note.id === this.props.navigation.state.params.note.id
+    )[0];
+    return note.comments;
   };
 
   keyExtractor = comment => `${comment.id}`;
@@ -58,15 +67,17 @@ class NoteDetailsScreen extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.commentsContainer}>
-          <FlatList
-            data={this.props.comments.filter(
-              comment =>
-                comment.noteId === this.props.navigation.state.params.note.id
-            )}
-            renderItem={({ item }) => this.renderComment(item)}
-            keyExtractor={this.keyExtractor}
-          />
+          {this.dataToRender().length === 0 ? (
+            <Text>No comments yet. Add something... </Text>
+          ) : (
+            <FlatList
+              data={this.dataToRender()}
+              renderItem={({ item }) => this.renderComment(item)}
+              keyExtractor={this.keyExtractor}
+            />
+          )}
         </View>
+
         <KeyboardAvoidingView
           style={styles.createCommentContainer}
           behavior="height"
@@ -82,9 +93,8 @@ class NoteDetailsScreen extends Component {
   }
 }
 
-const mapStateToProps = ({ comments, notes }) => {
+const mapStateToProps = ({ notes }) => {
   return {
-    comments: comments.comments,
     notes,
   };
 };
@@ -92,7 +102,7 @@ const mapStateToProps = ({ comments, notes }) => {
 const mapDispatchToProps = dispatch => {
   return {
     addComment: (comment, noteId) => {
-      dispatch(CommentsActions.addComment(comment, noteId));
+      dispatch(NotesActions.addComment(comment, noteId));
     },
   };
 };
