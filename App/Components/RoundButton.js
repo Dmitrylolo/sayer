@@ -16,8 +16,8 @@ const RoundButton = props => {
 };
 
 RoundButton.propTypes = {
-  buttonContent: PropTypes.text,
-  onPress: PropTypes.func,
+  buttonContent: PropTypes.string.isRequired,
+  onPress: PropTypes.func.isRequired,
 };
 
 export default RoundButton;

@@ -19,7 +19,7 @@ const MainScreenTitle = props => {
 };
 
 MainScreenTitle.propTypes = {
-  mainText: PropTypes.string,
+  mainText: PropTypes.string.isRequired,
   secondaryText: PropTypes.string,
 };
 

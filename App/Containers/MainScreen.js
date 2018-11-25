@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Alert } from 'react-native';
 
 import MainScreenTitle from '../Components/MainScreenTitle';
 import NoteListItem from '../Components/NoteListItem';
@@ -31,6 +31,25 @@ class MainScreen extends Component {
     };
   };
 
+  onNotePress = id => this.props.navigation.push('NoteDetails');
+
+  onDeleteButtonPress = id =>
+    Alert.alert(
+      'Delete Note?',
+      'Are you sure you want to delete this note?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        { text: 'OK', onPress: () => this.deleteNote(id) },
+      ],
+      { cancelable: false }
+    );
+
+  deleteNote = id => alert(`note with id: ${id} have been deleted`);
+
   keyExtractor = item => `${item.id}`;
 
   renderNotes = () => {
@@ -39,12 +58,14 @@ class MainScreen extends Component {
         data={NOTES_FIXTURES}
         renderItem={({ item }) => (
           <NoteListItem
+            onNotePress={() => this.onNotePress(item.id)}
             id={item.id}
             noteText={item.text}
             commentsAmount={
               COMMENTS_FIXTURES.filter(comment => comment.noteId === item.id)
                 .length
             }
+            onDeleteButtonPress={() => this.onDeleteButtonPress(item.id)}
           />
         )}
         keyExtractor={this.keyExtractor}

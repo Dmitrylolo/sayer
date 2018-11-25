@@ -11,7 +11,7 @@ const RoundedCommentsAmount = props => (
 );
 
 RoundedCommentsAmount.propTypes = {
-  amount: PropTypes.number,
+  amount: PropTypes.number.isRequired,
 };
 
 export default RoundedCommentsAmount;
