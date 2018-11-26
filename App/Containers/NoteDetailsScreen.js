@@ -58,8 +58,11 @@ class NoteDetailsScreen extends Component {
       },
       addComment,
     } = this.props;
-    addComment(commentText, noteId);
-    this.setState({ commentText: '' });
+    if (commentText.trim().length > 0) {
+      addComment(commentText, noteId);
+      return this.setState({ commentText: '' });
+    }
+    return alert('Type at least 1 letter');
   };
 
   dataToRender = () => {

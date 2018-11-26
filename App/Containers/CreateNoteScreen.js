@@ -33,8 +33,11 @@ class CreateNoteScreen extends Component {
   onChangeNoteText = noteText => this.setState({ noteText });
 
   onCreateButtonPress = () => {
-    this.props.createNote(this.state.noteText);
-    this.props.navigation.navigate('Main');
+    if (this.state.noteText.trim().length > 0) {
+      this.props.createNote(this.state.noteText);
+      return this.props.navigation.navigate('Main');
+    }
+    return alert('Type at least 1 letter');
   };
 
   render() {
