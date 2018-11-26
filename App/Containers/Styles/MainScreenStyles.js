@@ -6,4 +6,9 @@ export default StyleSheet.create({
     flexGrow: 1,
     backgroundColor: 'white',
   },
+  noNotesContainer: {
+    alignItems: 'center',
+    marginTop: Metrics.doubleBaseMargin,
+  },
+  noNotesText: { textAlign: 'center' },
 });

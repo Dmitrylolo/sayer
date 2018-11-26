@@ -24,7 +24,7 @@ class NoteDetailsScreen extends Component {
     return {
       headerTitle: <HeaderTitle title={navigation.state.params.note.text} />,
       headerLeft: (
-        <View style={styles.backButton}>
+        <View style={styles.headerMargin}>
           <RoundButton
             buttonText="←"
             onButtonPress={() => navigation.navigate('Main')}
@@ -77,7 +77,11 @@ class NoteDetailsScreen extends Component {
       <View style={styles.container}>
         <View style={styles.commentsContainer}>
           {this.dataToRender().length === 0 ? (
-            <Text>No comments yet. Add something... </Text>
+            <View style={styles.noCommentsContainer}>
+              <Text style={styles.noCommentsText}>
+                No comments yet. Add something...{' '}
+              </Text>
+            </View>
           ) : (
             <FlatList
               data={this.dataToRender()}

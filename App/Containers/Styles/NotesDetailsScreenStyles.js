@@ -14,5 +14,10 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.createCommentBackground,
   },
-  backButton: { marginLeft: Metrics.baseMargin },
+  headerMargin: { marginLeft: Metrics.doubleBaseMargin },
+  noCommentsContainer: {
+    alignItems: 'center',
+    marginTop: Metrics.doubleBaseMargin,
+  },
+  noCommentsText: { textAlign: 'center' },
 });

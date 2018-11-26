@@ -64,7 +64,9 @@ class MainScreen extends Component {
     return (
       <View style={styles.container}>
         {notes.length === 0 ? (
-          <Text>No notes yet</Text>
+          <View style={styles.noNotesContainer}>
+            <Text style={styles.noNotesText}>No notes yet</Text>
+          </View>
         ) : (
           <FlatList
             data={notes}

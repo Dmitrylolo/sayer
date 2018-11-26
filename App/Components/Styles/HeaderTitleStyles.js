@@ -3,7 +3,8 @@ import { Metrics, Colors } from '../../Themes/';
 
 export default StyleSheet.create({
   container: {
-    width: '70%',
+    width: '80%',
+    marginLeft: Metrics.doubleBaseMargin,
   },
   title: {
     color: Colors.headerTitleColor,
