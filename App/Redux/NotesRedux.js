@@ -24,7 +24,7 @@ export const createNote = (state, { note }) => {
     return [
       ...state,
       {
-        id: state.length + 1,
+        id: state.length === 0 ? 1 : state[state.length - 1].id + 1,
         text: note,
         comments: [],
       },

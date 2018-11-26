@@ -24,12 +24,23 @@ class NoteDetailsScreen extends Component {
     return {
       headerTitle: <HeaderTitle title={navigation.state.params.note.text} />,
       headerLeft: (
-        <RoundButton buttonText="←" onButtonPress={() => navigation.goBack()} />
+        <View style={styles.backButton}>
+          <RoundButton
+            buttonText="←"
+            onButtonPress={() => navigation.navigate('Main')}
+          />
+        </View>
       ),
     };
   };
 
-  state = { commentText: '' };
+  constructor(props) {
+    super(props);
+    this.state = {
+      commentText: '',
+      addComment: false,
+    };
+  }
 
   onCommentTextChange = commentText => {
     this.setState({ commentText });
@@ -45,18 +56,16 @@ class NoteDetailsScreen extends Component {
           },
         },
       },
-      navigation: { navigate },
       addComment,
     } = this.props;
-    navigate('Main');
     addComment(commentText, noteId);
+    this.setState({ commentText: '' });
   };
 
   dataToRender = () => {
-    const note = this.props.notes.filter(
+    return this.props.notes.filter(
       note => note.id === this.props.navigation.state.params.note.id
-    )[0];
-    return note.comments;
+    )[0].comments;
   };
 
   keyExtractor = comment => `${comment.id}`;

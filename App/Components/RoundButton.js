@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import styles from './Styles/RoundButtonStyles';
@@ -7,9 +7,11 @@ import styles from './Styles/RoundButtonStyles';
 const RoundButton = props => {
   const { onButtonPress, buttonText } = props;
   return (
-    <TouchableOpacity onPress={onButtonPress} style={[styles.container]}>
-      <Text style={styles.content}>{buttonText}</Text>
-    </TouchableOpacity>
+    <View style={styles.container}>
+      <TouchableOpacity onPress={onButtonPress}>
+        <Text style={styles.content}>{buttonText}</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 

@@ -13,5 +13,6 @@ export default StyleSheet.create({
   content: {
     color: Colors.roundButtonContentColor,
     fontSize: Metrics.roundButtonContentSize,
+    marginTop: -5,
   },
 });

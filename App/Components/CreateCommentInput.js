@@ -19,7 +19,7 @@ const CreateCommentInput = props => {
           placeholder="Type new comment here.."
           value={commentText}
           style={styles.input}
-          onChangeText={commentText => props.onCommentTextChange(commentText)}
+          onChangeText={text => onCommentTextChange(text)}
         />
       </View>
       <View style={styles.buttonContainer}>
